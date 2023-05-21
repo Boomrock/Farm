@@ -203,18 +203,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1458950890}
-        m_MethodName: StartPlacingBuilding
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 3891809155205246590, guid: ad35d355b57242145ad6adb4cdee1d5d,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: Building, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 469114157}
         m_MethodName: CloseMenu
         m_Mode: 1
@@ -228,13 +216,14 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 373784325}
         m_MethodName: BuyWorkHouse
-        m_Mode: 5
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 649165547123975585, guid: ad35d355b57242145ad6adb4cdee1d5d,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: Building, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: FarmHouse
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &345711041
@@ -356,18 +345,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1458950890}
-        m_MethodName: StartPlacingBuilding
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 6980555336741671601, guid: 5df1f2d31417e594cbd9ccb9b7c8234f,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: Building, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 469114157}
         m_MethodName: CloseMenu
         m_Mode: 1
@@ -381,10 +358,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 373784325}
         m_MethodName: BuyWorkHouse
-        m_Mode: 5
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: -6822512436082621298, guid: 5df1f2d31417e594cbd9ccb9b7c8234f,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: Building, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: StockHouse
@@ -443,7 +421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &373784325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,6 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e181ce0b28ebabd46baa80a12ee4b02c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Grid: {fileID: 1458950890}
   defaultPrice: 1
   stock: {fileID: 2056187882}
 --- !u!4 &373784326
@@ -1938,8 +1917,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4faa9c196a8f1d4796487393be68af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resource: 0
-  maxResource: 0
+  resource: 5
+  maxResource: 6
 --- !u!4 &2056187883
 Transform:
   m_ObjectHideFlags: 0
