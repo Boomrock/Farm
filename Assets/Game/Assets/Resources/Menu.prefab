@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 8227526424598655210}
+  canvas: {fileID: 5752792229943201258}
 --- !u!1 &5752792230045698994
 GameObject:
   m_ObjectHideFlags: 0

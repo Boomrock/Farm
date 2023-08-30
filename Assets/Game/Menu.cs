@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
+using Zenject;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject menu;
+    [SerializeField] private GameObject menu;
+    [SerializeField] private Canvas canvas;
 
+    [Inject]
+    void Constructor(Camera mainCamera)
+    {
+        canvas.worldCamera = mainCamera;
+    }
     public void OpenMenu()
     {
         if (!menu.activeSelf)
