@@ -1,45 +1,42 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Stock : MonoBehaviour
+public class Stock
 {
-    [SerializeField]
-    private int resource = 0;
-    [SerializeField]
-    private int maxResource = 0;
-    private List<IWorksHouse> workHouses;
+    private int _resource = 0;
+    private int _maxResource = 0;
+    private List<IWorksHouse> _workHouses;
 
     public int Resource
     {
-        get => resource;
+        get => _resource;
         set
         {
-            if (value <= maxResource) 
-                resource = value;
+            if (value <= _maxResource) 
+                _resource = value;
         }
     }
     public int MaxResource
     {
-        get => maxResource;
+        get => _maxResource;
         set
         {
             if (value >= 0)
-                maxResource = value;
+                _maxResource = value;
         }
     }
 
-    void Start()
+    public Stock()
     {
-        workHouses = new List<IWorksHouse>();
+        _workHouses = new List<IWorksHouse>();
     }
     public void AddBuildings(IWorksHouse workHouse)
     {
-        
-        workHouse.Work(this);
-        workHouses.Add(workHouse);
+        workHouse.Work();
+        _workHouses.Add(workHouse);
     }
     public void RemoveBuildings(IWorksHouse workHouse)
     {
-        workHouses.Remove(workHouse);
+        _workHouses.Remove(workHouse);
     }
 }

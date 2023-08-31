@@ -1,106 +1,65 @@
 ﻿using UnityEngine;
+using Zenject;
 
-public class BuildingsGrid : MonoBehaviour
+namespace Game.Building
 {
-    [SerializeField]
-    private Stock stock;
-
-
-
-    public Vector2Int GridSize = new Vector2Int(10, 10);
-    private Building[,] grid;
-    private Building flyingBuilding;
-    private Camera mainCamera;
-
-    private void Awake()
+    public class BuildingsGrid : MonoBehaviour
     {
-        grid = new Building[GridSize.x, GridSize.y];
+        public Vector2Int GridSize = new Vector2Int(10, 10);
+        private BuldingView[,] _grid;
 
-        mainCamera = Camera.main;
-    }
-
-    public void StartPlacingBuilding(Building buildingPrefab)
-    {
-        if (flyingBuilding != null)
+        private void Awake()
         {
-            Destroy(flyingBuilding.gameObject);
+            _grid = new BuldingView[GridSize.x, GridSize.y];
+        }
+        
+        public bool IsPlaceTaken(int placeX, int placeY, BuildingController flyingBuilding)
+        {
+            for (int x = 0; x < flyingBuilding.Size.x; x++)
+            {
+                for (int y = 0; y < flyingBuilding.Size.y; y++)
+                {
+                    if (_grid[placeX + x, placeY + y] != null) return true;
+                }
+            }
+
+            return false;
         }
 
-        flyingBuilding = Instantiate(buildingPrefab);
-    }
-    Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-    private void Update()
-    {
-        if (flyingBuilding != null)
+        public void PlaceBuild(int x, int y, BuildingController buildingController)
         {
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-            if (groundPlane.Raycast(ray, out float position))
+            for (int placeX = 0; placeX < buildingController.Size.x; placeX++)
             {
-                Vector3 worldPosition = ray.GetPoint(position);
-                Vector3 possitionInArray = worldPosition - transform.position;
-
-                int x = Mathf.RoundToInt(worldPosition.x);
-                int y = Mathf.RoundToInt(worldPosition.z);
-                int xInArray = Mathf.RoundToInt(possitionInArray.x);
-                int yInArray = Mathf.RoundToInt(possitionInArray.z);
-
-                bool available = true;
-
-                if (xInArray < 0 || xInArray > GridSize.x - flyingBuilding.Size.x) available = false;
-                if (yInArray < 0 || yInArray > GridSize.y - flyingBuilding.Size.y) available = false;
-
-                if (available && IsPlaceTaken(xInArray, yInArray )) available = false;
-
-                flyingBuilding.transform.position = new Vector3(x, 0, y);
-                flyingBuilding.SetTransparent(available);
-
-                if (available && Input.GetMouseButtonDown(0))
+                for (int placeY = 0; placeY < buildingController.Size.y; placeY++)
                 {
-                    PlaceFlyingBuilding(xInArray, yInArray);
+                    _grid[placeX + x , placeY + y] = buildingController.View;
                 }
             }
         }
-    }
-
-    private bool IsPlaceTaken(int placeX, int placeY)
-    {
-        for (int x = 0; x < flyingBuilding.Size.x; x++)
+        public void UnplaceBuild(int x, int y, BuildingController buildingController)
         {
-            for (int y = 0; y < flyingBuilding.Size.y; y++)
+            for (int placeX = 0; placeX < buildingController.Size.x; placeX++)
             {
-                if (grid[placeX + x, placeY + y] != null) return true;
+                for (int placeY = 0; placeY < buildingController.Size.y; placeY++)
+                {
+                    _grid[placeX + x , placeY + y] = null;
+                }
             }
         }
-
-        return false;
-    }
-    void OnDrawGizmos()
-    {
-        for (int x = 0; x < GridSize.x; x++)
+        
+        void OnDrawGizmos()
         {
-            for (int y = 0; y < GridSize.y ; y++)
+            for (int x = 0; x < GridSize.x; x++)
             {
-                if ((x + y) % 2 == 0) Gizmos.color = new Color(0.88f, 0f, 1f, 0.3f);
-                else Gizmos.color = new Color(1f, 0.68f, 0f, 0.3f);
+                for (int y = 0; y < GridSize.y ; y++)
+                {
+                    if ((x + y) % 2 == 0) Gizmos.color = new Color(0.88f, 0f, 1f, 0.3f);
+                    else Gizmos.color = new Color(1f, 0.68f, 0f, 0.3f);
 
-                Gizmos.DrawCube(transform.position + new Vector3(x, 0, y), new Vector3(1, .1f, 1));
+                    Gizmos.DrawCube(transform.position + new Vector3(x, 0, y), new Vector3(1, .1f, 1));
+                }
             }
         }
-    }
-    private void PlaceFlyingBuilding(int placeX, int placeY)
-    {
-        for (int x = 0; x < flyingBuilding.Size.x; x++)
-        {
-            for (int y = 0; y < flyingBuilding.Size.y; y++)
-            {
-                grid[placeX + x , placeY + y] = flyingBuilding;
-            }
-        }
-        stock.AddBuildings(flyingBuilding.GetComponent<IWorksHouse>());
-        flyingBuilding.SetNormal();
-        flyingBuilding = null;
-
 
     }
 }

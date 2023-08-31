@@ -1,17 +1,24 @@
-﻿
-using UnityEngine;
+﻿public class StockHouse : BuildingController{
+    Stock _stock;
 
-public class StockHouse : Building, IWorksHouse
-{
-    Stock stock;
-    public override string Name => "StockHouse";
+    public StockHouse(Stock stock)
+    {
+        _stock = stock;
+    }
+    public override void Work()
+    {
+        
+        _stock.MaxResource +=10;
+    }
+
+    public override void StopWork()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void Work(Stock scoreCounter)
     {
-        this.stock = scoreCounter;
-        scoreCounter.MaxResource +=10;
+        
     }
-    void OnDestroy()
-    {
-        stock.MaxResource -=10; 
-    }
+
 }

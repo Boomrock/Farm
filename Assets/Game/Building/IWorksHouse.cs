@@ -1,5 +1,6 @@
 ﻿ public interface IWorksHouse
   {
-        void Work(Stock scoreCounter);
-    }
+        void Work();
+        void StopWork();
+  }
 

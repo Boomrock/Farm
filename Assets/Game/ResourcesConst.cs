@@ -4,6 +4,5 @@ public class ResourcesConst
     public const string Light = "Directional Light";
     public const string Floor = "floor";
     public const string Menu = "Menu";
-
-        
+    public const string EventSystem = "EventSystem";
 }
