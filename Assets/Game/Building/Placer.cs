@@ -19,8 +19,6 @@ namespace Game.Building
             _factory = factory;
             _grid = grid;
             _mainCamera = mainCamera;
-            var a = _factory.Create(BuildingType.FarmHouse);
-            Debug.Log(a);
         }
         public void StartPlacingBuilding(BuildingController buildingControllerPrefab)
         {
@@ -29,7 +27,7 @@ namespace Game.Building
                 Object.Destroy(_flyingBuilding.View.gameObject);
             }
 
-            _flyingBuilding.View = Object.Instantiate(buildingControllerPrefab.View);
+            _flyingBuilding = buildingControllerPrefab;
         }
         private void PlaceFlyingBuilding(int x, int y)
         {

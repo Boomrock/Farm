@@ -1,10 +1,15 @@
-﻿public class StockHouse : BuildingController{
+﻿using Game.Building;
+
+public class StockHouse : BuildingController{
     Stock _stock;
 
     public StockHouse(Stock stock)
     {
         _stock = stock;
     }
+
+    public override BuildingView View { get; }
+
     public override void Work()
     {
         

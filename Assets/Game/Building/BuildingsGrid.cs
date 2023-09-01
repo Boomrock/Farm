@@ -6,11 +6,11 @@ namespace Game.Building
     public class BuildingsGrid : MonoBehaviour
     {
         public Vector2Int GridSize = new Vector2Int(10, 10);
-        private BuldingView[,] _grid;
+        private BuildingView[,] _grid;
 
         private void Awake()
         {
-            _grid = new BuldingView[GridSize.x, GridSize.y];
+            _grid = new BuildingView[GridSize.x, GridSize.y];
         }
         
         public bool IsPlaceTaken(int placeX, int placeY, BuildingController flyingBuilding)

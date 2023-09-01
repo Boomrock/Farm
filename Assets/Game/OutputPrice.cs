@@ -13,12 +13,12 @@ public class OutputPrice : MonoBehaviour
     [SerializeField] string WorkHouseName;
 
     [Inject]
-    void Constructor(Shop shop)
+    void Constructor()
     {
-        _shop = shop;
+
     }
     void Update()
-    {
-        text.text = WorkHouseName +": "+_shop.GetPrice(WorkHouseKey);
+    { 
+        //text.text = WorkHouseName +": "+_shop.GetPrice(WorkHouseKey);
     }
 }

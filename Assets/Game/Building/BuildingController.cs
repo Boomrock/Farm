@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class BuildingController : IWorksHouse
 {
-    public BuldingView View; 
+    public abstract BuildingView View { get; }
     public Vector2Int Size = Vector2Int.one;
     public void SetTransparent(bool available)
     {

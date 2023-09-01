@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8783489595604296918}
+  - component: {fileID: 1910653878689246778}
   m_Layer: 0
   m_Name: Building Farm
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1910653878689246778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3614466768990721265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b5b036259ef4524864ae5b9f3692596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainRenderer: {fileID: 5538806858228318424}
 --- !u!1001 &5516448081146349804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -99,11 +113,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23528657807951924, guid: 6d86765ceb21f3a499a97c64ed498a28,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d86765ceb21f3a499a97c64ed498a28, type: 3}
 --- !u!4 &5521252899535901170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4840115506764062, guid: 6d86765ceb21f3a499a97c64ed498a28,
+    type: 3}
+  m_PrefabInstance: {fileID: 5516448081146349804}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5538806858228318424 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23528657807951924, guid: 6d86765ceb21f3a499a97c64ed498a28,
     type: 3}
   m_PrefabInstance: {fileID: 5516448081146349804}
   m_PrefabAsset: {fileID: 0}
