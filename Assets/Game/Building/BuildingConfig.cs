@@ -8,16 +8,18 @@ namespace Game.Building
     public class BuildingConfig : ScriptableObject
     {
         [SerializeField] private BuildingModel[] _models;
-        public Dictionary<BuildingType, BuildingView> Dictionary;
+        public Dictionary<BuildingType, BuildingModel> Dictionary = new Dictionary<BuildingType, BuildingModel>();
         private bool _isInit = false;
 
         public void Init()
         {
             if(_isInit)
                 return;
+            if(_models == null)
+                Debug.LogError("_models is null");
             foreach (var model in _models)
             {
-                Dictionary.Add(model.Type, model.View);
+                Dictionary.Add(model.Type, model);
             }
 
             _isInit = true;
@@ -29,5 +31,6 @@ namespace Game.Building
     {
         public BuildingView View;
         public BuildingType Type;
+        public int Price; 
     }
 }

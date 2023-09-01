@@ -6,23 +6,30 @@ using UnityEngine;
 
 public class Shop
 {
-    private Dictionary<string, int> priceList = new Dictionary<string, int> 
-    { 
-        {"FarmHouse", 1 },
-        {"StockHouse", 5 } 
-    };
     private BuildingsGrid _grid;
+    private readonly Placer _placer;
     private Stock _stock;
-    private int _defaultPrice = 1;
+    private readonly BuildingConfig _config;
+    private readonly BuildingsFactory _factory;
 
-    public Shop(BuildingsGrid grid, Stock stock)
+    public Shop(Placer placer, Stock stock, BuildingConfig config, BuildingsFactory factory)
     {
-        _grid = grid;
+        _placer = placer;
         _stock = stock;
+        _config = config;
+        _factory = factory;
     }
-
-
-    public int GetPrice(string key) => priceList[key]; 
+    public BuildingController BuyBuilding(BuildingType Type)
+    {
+        var model = _config.Dictionary[Type];
+        if (model.Price > _stock.Resource)
+            return null;
+        var builderController = _factory.Create(Type);
+        _stock.Resource -= model.Price;
+        _placer.StartPlacingBuilding(builderController);
+        return builderController;
+    }
+    public int GetPrice(BuildingType Type) => _config.Dictionary[Type].Price; 
 }
 
 public enum BuildingType{

@@ -1,32 +1,36 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] private GameObject menu;
-    [SerializeField] private Canvas canvas;
+    [SerializeField] private GameObject _menu;
+    [SerializeField] private Canvas _canvas;
+    private Shop _shop;
 
     [Inject]
-    void Constructor(Camera mainCamera)
+    void Constructor(Camera mainCamera, Shop shop)
     {
-        canvas.worldCamera = mainCamera;
+        _shop = shop;
+        _canvas.worldCamera = mainCamera;
     }
     public void OpenMenu()
     {
-        if (!menu.activeSelf)
+        if (!_menu.activeSelf)
         {
-            menu.SetActive(true);
+            _menu.SetActive(true);
         }
-        
-
     }
     public void CloseMenu()
     {
-        if (menu.activeSelf)
+        if (_menu.activeSelf)
         {
+            _menu.SetActive(false);
+        } 
+    }
 
-            menu.SetActive(false);
-        }
-        
+    public void Buy(BuildingType buildingType)
+    {
+        _shop.BuyBuilding(buildingType);
     }
 }

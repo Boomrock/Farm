@@ -250,8 +250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d11615468878f4c8459885aeadb7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menu: {fileID: 8227526424598655210}
-  canvas: {fileID: 5752792229943201258}
+  _menu: {fileID: 8227526424598655210}
+  _canvas: {fileID: 5752792229943201258}
 --- !u!1 &5752792230045698994
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,9 +533,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5752792229943201270}
         m_TargetAssemblyTypeName: 
-        m_MethodName: BuyWorkHouse
+        m_MethodName: 
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 649165547123975585, guid: ad35d355b57242145ad6adb4cdee1d5d,
@@ -1097,10 +1097,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45799c79f37ce944dab0f6eab0e83cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shop: {fileID: 0}
-  text: {fileID: 5752792231099374267}
-  WorkHouseKey: StockHouse
-  WorkHouseName: "\u0421\u043A\u043B\u0430\u0434"
+  _text: {fileID: 5752792231099374267}
+  _workHouseType: 1
+  _workHouseName: Stock House
 --- !u!1 &6746649802431850439
 GameObject:
   m_ObjectHideFlags: 0

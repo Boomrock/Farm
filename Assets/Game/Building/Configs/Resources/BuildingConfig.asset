@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b4a90bd7094b19bcf139b1156979da, type: 3}
   m_Name: BuildingConfig
   m_EditorClassIdentifier: 
-  Models:
-  - View: {fileID: 0}
+  _models:
+  - View: {fileID: 1910653878689246778, guid: ad35d355b57242145ad6adb4cdee1d5d, type: 3}
     Type: 0
-  - View: {fileID: 0}
-    Type: 0
+  - View: {fileID: -2203879442076170046, guid: 5df1f2d31417e594cbd9ccb9b7c8234f, type: 3}
+    Type: 1

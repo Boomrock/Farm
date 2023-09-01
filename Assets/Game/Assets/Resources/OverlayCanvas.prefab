@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8438355081563654916}
   - component: {fileID: 8438355081563654915}
   - component: {fileID: 8438355081563654914}
-  - component: {fileID: 8438355081563654918}
   m_Layer: 5
   m_Name: OverlayCanvas
   m_TagString: Untagged
@@ -102,22 +101,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8438355081563654918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8438355081563654913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45799c79f37ce944dab0f6eab0e83cc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shop: {fileID: 0}
-  text: {fileID: 0}
-  WorkHouseKey: FarmHouse
-  WorkHouseName: "\u0424\u0435\u0440\u043C\u0430"
 --- !u!1 &8438355081685710654
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,5 +249,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c36a64c762ac4d48914d744d74076f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stock: {fileID: 0}
   text: {fileID: 8438355081685710625}

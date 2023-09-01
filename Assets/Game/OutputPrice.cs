@@ -7,18 +7,18 @@ using Zenject;
 
 public class OutputPrice : MonoBehaviour
 { 
-    [SerializeField] Shop _shop;
-    [SerializeField] TextMeshProUGUI text;
-    [SerializeField] string WorkHouseKey;
-    [SerializeField] string WorkHouseName;
+    [SerializeField] TextMeshProUGUI _text;
+    [SerializeField] BuildingType _workHouseType;
+    [SerializeField] string _workHouseName;
+    private    Shop _shop;
 
     [Inject]
-    void Constructor()
+    void Constructor(Shop shop)
     {
-
+        _shop = shop;
     }
     void Update()
     { 
-        //text.text = WorkHouseName +": "+_shop.GetPrice(WorkHouseKey);
+        _text.text = _workHouseName +": "+_shop.GetPrice(_workHouseType);
     }
 }

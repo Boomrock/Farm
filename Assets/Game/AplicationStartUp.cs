@@ -9,68 +9,112 @@ public class AplicationStartUp : MonoInstaller
 {
     public override void InstallBindings()
     {
-        Container.Bind<MonoBehaviour>().FromInstance(this);// context
-        CreateScene();
-        BuildingFactoryBinding();
+        Container.Bind<MonoBehaviour>().FromInstance(this); // context
+        BindScene();
+        BindBuildingFactory();
+        BindShopTools();
+
+    }
+    private void BindScene()
+    {
+        var light = Container.InstantiatePrefabResourceForComponent<Light>(ResourcesConst.Light);
+        var eventSystem = Container.InstantiatePrefabResourceForComponent<EventSystem>(ResourcesConst.EventSystem);
         
+        BindMainCamera();
+        BindFloor();
+
+    }
+    private void BindBuildingFactory()
+    {
+        Container.Bind<BuildingsFactory>().AsSingle();
+        
+        var config = Resources.Load<BuildingConfig>(ResourcesConst.BuildingConfig);
+        config.Init();
+        Container.Bind<BuildingConfig>()
+            .FromInstance(config)
+            .AsTransient();
+        
+        BindKeysToFactory(config);
+    }
+    private void BindShopTools()
+    {
+        Container.Bind<Stock>()
+            .AsSingle();
+        
+        Container.BindInterfacesAndSelfTo<Placer>()
+            .AsSingle()
+            .NonLazy();
+        
+        Container.Bind<Shop>()
+            .AsSingle();
+        
+        BindMenu();
+       
     }
 
-    private void CreateScene()
+   
+
+    private void BindMainCamera()
     {
-        Container.Bind<Stock>().AsSingle();
         var mainCamera = Container.InstantiatePrefabResourceForComponent<Camera>(ResourcesConst.MainCamera);
+
         Container.Bind<Camera>()
             .FromInstance(mainCamera)
             .AsSingle();
+    }
+
+    private void BindFloor()
+    {
         var floor = Container.InstantiatePrefabResourceForComponent<Floor>(ResourcesConst.Floor);
+
         Container.Bind<Floor>()
             .FromInstance(floor)
             .AsSingle();
+
         Container.Bind<BuildingsGrid>()
             .FromInstance(floor.Grid);
-        Container.Bind<Shop>()
-            .AsSingle();
+    }
+
+    private void BindMenu()
+    {
         var menu = Container.InstantiatePrefabResourceForComponent<Menu>(ResourcesConst.Menu);
+        
         Container.Bind<Menu>()
             .FromInstance(menu)
             .AsSingle();
-        Container.Bind<Placer>()
-            .AsSingle()
-            .NonLazy();
-        var light = Container.InstantiatePrefabResourceForComponent<Light>(ResourcesConst.Light);
-        var eventSystem = Container.InstantiatePrefabResourceForComponent<EventSystem>(ResourcesConst.EventSystem);
     }
 
-    private void BuildingFactoryBinding()
-    {
-        Container.Bind<BuildingsFactory>().AsSingle();
+   
 
-        var config = Resources.Load<BuildingConfig>(ResourcesConst.BuildingConfig);
-        config.Init();
-        InitKeysToFactory(config);
-  
-    }
-
-    void InitKeysToFactory(BuildingConfig config)
+    void BindKeysToFactory(BuildingConfig config)
     {
         config.Init();
+        
         var dictionary = config.Dictionary;
-        foreach (var buildingType in dictionary.Keys)
-        {
-            AddBinding<typeof((IWorksHouse)dictionary[buildingType].GetType())>(buildingType);
-            Container.Bind<FarmHouseView>()
-                .FromInstance()
-                .AsSingle();
 
-        }
+        AddBinding<FarmHouseController>(BuildingType.FarmHouse);
+        AddBinding<StockHouseController>(BuildingType.StockHouse);
 
+        var farmHouseView = (FarmHouseView)dictionary[BuildingType.FarmHouse].View;
+        var stockHouseView = (StockHouseView)dictionary[BuildingType.StockHouse].View;
+
+        Container.Bind<FarmHouseView>()
+            .FromInstance(farmHouseView)
+            .AsSingle();
+        Container.Bind<StockHouseView>()
+            .FromInstance(stockHouseView)
+            .AsSingle();
     }
+
     void AddBinding<TDerived>(BuildingType key)
         where TDerived : IWorksHouse
     {
-        Container.BindInstance(
-            ModestTree.Util.ValuePair.New(
-                key, typeof(TDerived))).WhenInjectedInto<BuildingsFactory>();
+        Container.BindInstance
+                (ModestTree
+                .Util
+                .ValuePair
+                .New(key, typeof(TDerived)))
+            .WhenInjectedInto<BuildingsFactory>();
     }
 
 }
